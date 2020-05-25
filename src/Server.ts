@@ -1,9 +1,10 @@
 import "module-alias/register";
-
 import express,
 {
     Application
 } from "express";
+import swaggerUi from "swagger-ui-express";
+import YAML from "yamljs";
 import morgan from "morgan";
 import helmet from "helmet";
 import compression from "compression";
@@ -24,6 +25,7 @@ class Server {
         this.app = express();
         this.preMiddleware();
         this.routes();
+        this.setSwaggerRoute();
         this.postMiddleware();
         this.start();
     }
@@ -37,7 +39,6 @@ class Server {
         this.app.use(helmet());
         this.app.use(compression());
         this.app.use(cors());
-
     }
 
     postMiddleware() {
@@ -46,6 +47,11 @@ class Server {
 
     routes() {
         this.app.use(routes);
+    }
+
+    setSwaggerRoute() {
+        const swaggerDocument = YAML.load('./src/documentation/swagger.yaml');
+        this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     }
 
     start() {

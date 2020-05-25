@@ -47,7 +47,8 @@
       "@controllers/*": ["controllers/*"],
       "@repositories/*": ["repositories/*"],
       "@exceptions/*": ["exceptions/*"],
-      "@middlewares/*": ["middlewares/*"]
+      "@middlewares/*": ["middlewares/*"],
+      "@documentation/*": ["documentation/*"]
     },
 
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
