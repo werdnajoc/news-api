@@ -4,7 +4,7 @@ import
     Response,
 } from "express";
 
-import NewsApi from "../repositories/newsapi";
+import NewsApi from "@repositories/newsapi";
 
 class NewsController {
     show(request: Request, response: Response) {

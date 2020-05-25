@@ -1,7 +1,7 @@
 import { Router } from "express";
 
-import IndexController from "./controllers/IndexController";
-import NewsController from "./controllers/NewsController";
+import IndexController from "@controllers/IndexController";
+import NewsController from "@controllers/NewsController";
 
 class Routes {
     public router: Router;
@@ -21,8 +21,8 @@ class Routes {
     }
 
     news() {
-        this.router.get('/news', NewsController.show)
-        this.router.get('/news/:value', NewsController.findByValue)
+        this.router.get('/news', NewsController.show);
+        this.router.get('/news/:value', NewsController.findByValue);
     }
 }
 
