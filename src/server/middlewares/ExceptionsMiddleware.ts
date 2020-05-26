@@ -5,7 +5,7 @@ import {
 } from "express";
 import httpStatus from "http-status";
 
-import GenericException from "@exceptions/GenericException";
+import GenericException from "@shared/domain/exceptions/GenericException";
 
 class ExceptionsMiddleware {
     setHttpError(error: GenericException, request: Request, response: Response, next: NextFunction) {

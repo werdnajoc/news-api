@@ -11,11 +11,11 @@ import compression from "compression";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import routes from "./routes";
+import registerRouter from "./routes";
 
 import ExceptionsMiddleware from "./middlewares/ExceptionsMiddleware";
 
-class Server {
+class Index {
     app: Application;
     port: number;
 
@@ -24,7 +24,7 @@ class Server {
         this.port = Number(process.env.PORT) || 3000;
         this.app = express();
         this.preMiddleware();
-        this.routes();
+        this.registerRouter();
         this.setSwaggerRoute();
         this.postMiddleware();
         this.start();
@@ -45,12 +45,12 @@ class Server {
         this.app.use(ExceptionsMiddleware);
     }
 
-    routes() {
-        this.app.use(routes);
+    registerRouter() {
+        registerRouter(this.app);
     }
 
     setSwaggerRoute() {
-        const swaggerDocument = YAML.load('./src/documentation/swagger.yaml');
+        const swaggerDocument = YAML.load('./documentation/swagger/swagger.yaml');
         this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     }
 
@@ -59,4 +59,4 @@ class Server {
     }
 }
 
-new Server();
+new Index();
